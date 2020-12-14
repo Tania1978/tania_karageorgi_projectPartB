@@ -57,7 +57,7 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return "Assignment id" + asid + ": " + title + ", " + description + ". Submission Date: " + subDate + ". ";
+        return "Assignment id " + asid + ": " + title + ", " + description + ". Submission Date: " + subDate + ". ";
     }
 
 }

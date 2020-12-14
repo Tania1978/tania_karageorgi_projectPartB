@@ -113,7 +113,7 @@ public class UserMenu {
                 case "5":
                       cid = chooseEntity(sc,c.getAllCourses(),"courses");
                     if (e.getStudentsPerCourse(cid).isEmpty()) {
-                        System.out.println("Course" + cid + " has no students. Go back to the Main menu to enroll a Student to the Course.");
+                        System.out.println("Course" + cid + " has no students. Enter B to go back to the Main menu to enroll a Student to the Course.");
                     } else {
                         FieldGetter.printArrayList(e.getStudentsPerCourse(cid));
                     }
@@ -121,7 +121,7 @@ public class UserMenu {
                 case "6":
                       cid = chooseEntity(sc,c.getAllCourses(),"courses");
                     if (tpc.getTrainersPerCourse(cid).isEmpty()) {
-                        System.out.println("Course" + cid + " has no trainers linked. Go back to the Main menu to link a Trainer to the Course.");
+                        System.out.println("Course" + cid + " has no trainers linked. Enter B to go back to the Main menu to link a Trainer to the Course.");
                     } else {
                         FieldGetter.printArrayList(tpc.getTrainersPerCourse(cid));
                     }
@@ -129,7 +129,7 @@ public class UserMenu {
                 case "7":
                       cid = chooseEntity(sc,c.getAllCourses(),"courses");
                     if (apc.getAssignmentsPerCourse(cid).isEmpty()) {
-                        System.out.println("Course" + cid + " has no assignments. Go back to the Main menu to create an Assignment for the Course.");
+                        System.out.println("Course" + cid + " has no assignments. Enter B to go back to the Main menu to create an Assignment for the Course.");
                     } else {
                         FieldGetter.printArrayList(apc.getAssignmentsPerCourse(cid));
                     }
@@ -204,24 +204,25 @@ public class UserMenu {
                     tpc.linkTrainerToCourse(tid, cid);
                     break;
                 case "7":
-                    cid = chooseEntity(sc,c.getAllCourses(),"courses");
+                    cid = chooseEntity(sc, c.getAllCourses(), "courses");
                     if (e.getStudentsPerCourse(cid).isEmpty()) {
                         System.out.println("There are no Students enrolled in Course " + cid + ". Choose option 5 to Enroll Students to the Course.");
                     } else {
-                            sid = chooseStudentFromCourse(sc, cid);
-                    }
-                    if (apc.getAssignmentsPerCourse(cid).isEmpty()) {
-                        System.out.println("There are no Assignments associated with Course " + cid + ".Please select option 4 to add an Assignment to the Course.");
-                    } else {
-                        aid = chooseAssignmentFromCourse(sc,cid);
-                        scr.submitAssignmentForStudent(sid, cid, aid);
-                    }
+                        sid = chooseStudentFromCourse(sc, cid);
+
+                        if (apc.getAssignmentsPerCourse(cid).isEmpty()) {
+                            System.out.println("There are no Assignments associated with Course " + cid + ".Please select option 4 to add an Assignment to the Course.");
+                        } else {
+                            aid = chooseAssignmentFromCourse(sc, cid);
+                            scr.submitAssignmentForStudent(sid, cid, aid);
+                        }
                         if (scr.assignmentAlreadyGraded(sid, cid, aid)) {
                             System.out.println("Assignment " + aid + " for Student " + sid + "  has already been graded.");
                             askGradesMenu(sc, sid, cid, aid);
                         } else {
                             scr.gradeAssignment(sid, cid, aid, scr.askAssignmentGrades(sc));
                         }
+                    }
                     break;
                 case "B":
                 case "b":
@@ -264,7 +265,7 @@ public class UserMenu {
                 if (c.entityIdExists(id, tablename)) {
                     chosen = true;
                 } else {
-                    System.out.println("There is no id " + id  + " in the list of " + tablename + ". Please choose another  id" + id);
+                    System.out.println("There is no id " + id  + " in the list of " + tablename + ". Please choose another  id");
                     chosen = false;
                 }
             } else {

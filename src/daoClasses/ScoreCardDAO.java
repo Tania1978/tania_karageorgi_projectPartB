@@ -164,7 +164,7 @@ public class ScoreCardDAO implements IScoreCardDAO {
                     } catch (SQLException ex) {
                         Logger.getLogger(CourseDAO.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    System.out.println("Assignment " + aid + " was successfully graded");
+                    System.out.println("Assignment " + aid + " was successfully submitted for Student with Id " + sid);
                 }
             }
    
